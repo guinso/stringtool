@@ -18,6 +18,21 @@ func ToSnakeCase(str string) string {
 	return strings.ToLower(snake)
 }
 
+func SnakeToCamelCase(snakeStr string) string {
+	var result string
+	words := strings.Split(snakeStr, "_")
+
+	for index, str := range words {
+		if index == 0 {
+			result = strings.Title(str)
+		} else {
+			result += strings.Title(str)
+		}
+	}
+
+	return result
+}
+
 //MakeMD5 generate MD5 check summary from string (32 charactor long)
 func MakeMD5(value string) string {
 	md5 := md5.New()
