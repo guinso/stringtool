@@ -3,6 +3,7 @@ package stringtool
 
 import (
 	"crypto/md5"
+	"crypto/sha256"
 	"encoding/hex"
 	"regexp"
 	"strings"
@@ -39,4 +40,12 @@ func MakeMD5(value string) string {
 	md5.Write([]byte(value))
 
 	return hex.EncodeToString(md5.Sum(nil))
+}
+
+//MakeSHA256 generate SHA256 hash value from string (64 charactor long)
+func MakeSHA256(value string) string {
+	sha := sha256.New()
+	sha.Write([]byte(value))
+
+	return hex.EncodeToString(sha.Sum(nil))
 }
