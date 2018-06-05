@@ -7,6 +7,8 @@ import (
 	"encoding/hex"
 	"regexp"
 	"strings"
+
+	"github.com/satori/go.uuid"
 )
 
 var matchFirstCap = regexp.MustCompile("(.)([A-Z][a-z]+)")
@@ -19,6 +21,7 @@ func ToSnakeCase(str string) string {
 	return strings.ToLower(snake)
 }
 
+//SnakeToCamelCase convert snake case string format into camel case string format
 func SnakeToCamelCase(snakeStr string) string {
 	var result string
 	words := strings.Split(snakeStr, "_")
@@ -48,4 +51,15 @@ func MakeSHA256(value string) string {
 	sha.Write([]byte(value))
 
 	return hex.EncodeToString(sha.Sum(nil))
+}
+
+//GenerateRandomUUID generate random UUID string using version 4; random number method
+func GenerateRandomUUID() (string, error) {
+	rndUUID, err := uuid.NewV4()
+
+	if err != nil {
+		return "", err
+	}
+
+	return rndUUID.String(), nil
 }
