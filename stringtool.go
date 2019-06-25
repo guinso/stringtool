@@ -8,7 +8,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/satori/go.uuid"
+	uuid "github.com/satori/go.uuid"
 )
 
 var matchFirstCap = regexp.MustCompile("(.)([A-Z][a-z]+)")
@@ -55,11 +55,7 @@ func MakeSHA256(value string) string {
 
 //GenerateRandomUUID generate random UUID string using version 4; random number method
 func GenerateRandomUUID() (string, error) {
-	rndUUID, err := uuid.NewV4()
-
-	if err != nil {
-		return "", err
-	}
+	rndUUID := uuid.NewV4()
 
 	return rndUUID.String(), nil
 }

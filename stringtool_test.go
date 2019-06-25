@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/satori/go.uuid"
+	uuid "github.com/satori/go.uuid"
 )
 
 func TestSnakeToCamelCase(t *testing.T) {
@@ -43,18 +43,8 @@ func TestMakeSHA256(t *testing.T) {
 }
 
 func TestGenerateRandomUUID(t *testing.T) {
-	uuid1, err1 := uuid.NewV4()
-	uuid2, err2 := uuid.NewV4()
-
-	if err1 != nil {
-		t.Error(err1)
-		return
-	}
-
-	if err2 != nil {
-		t.Error(err2)
-		return
-	}
+	uuid1 := uuid.NewV4()
+	uuid2 := uuid.NewV4()
 
 	if strings.Compare(uuid1.String(), uuid2.String()) == 0 {
 		t.Errorf("both UUID value cannot be identical")
